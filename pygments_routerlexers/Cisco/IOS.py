@@ -5,6 +5,7 @@ from pygments.token import *
 class IOSLexer(RegexLexer):
     name="Cisco IOS"
     aliases = ['ios', 'IOS configuration file']	
+    filenames = ['*.ios']
     tokens={
         "root" : [
             (r"^!.*", Comment),

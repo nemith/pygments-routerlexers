@@ -5,6 +5,7 @@ from pygments.token import *
 class JunosLexer(RegexLexer):
     name="Juniper JunOS"
     aliases = ['junos', 'JunOS configuration file']
+    filenames = ['*.junos']
     tokens={
         "root" : [
             (r"#.*$",  Comment),

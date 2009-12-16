@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pygments-routerlexers',
-    version='0.3.1',
+    version='0.3.2',
     description="""Pygment lexers for router configuration files""" ,
     author="Brandon Bennett",
     packages = find_packages(),

@@ -5,6 +5,7 @@ from pygments.token import *
 class ScreenOSLexer(RegexLexer):
     name="Juniper ScreenOS"
     aliases = ['screenos', 'ScreenOS configuration file']
+    filenames = ['*.screenos']
     tokens={
         "root" : [
             (r"^!.*", Comment),
