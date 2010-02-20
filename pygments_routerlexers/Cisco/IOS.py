@@ -9,15 +9,20 @@ class IOSLexer(RegexLexer):
     tokens={
         "root" : [
             (r"^!.*", Comment),
+            (r"^(version\s+)(.*)$", bygroups(Keyword, Number.Float)),
             (r"(description)(.*?)$", bygroups(Keyword,Comment)),
             (r"(password|secret)(\s+[57]\s+)(\S+)", bygroups(Keyword,Number,String.Double)),
-            (r"^(interface|controller|router \S+|voice translation-\S+|voice-port)(.*?)$", bygroups(Keyword,Name.Attribute)),
+            (r"^(interface|controller|router \S+|voice translation-\S+|voice-port|line)(.*?)$", bygroups(Keyword.Type,Name.Function)),
+            (r"(permit|deny)", Operator.Word),
             (r"^(dial-peer\s+\S+\s+)(\S+)(.*?)$", bygroups(Keyword,Name.Attribute,Keyword)),
             (r"^(vlan\s+)(\d+)$", bygroups(Keyword,Name.Attribute)),
             (r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(/\d{1,2})?", Number), # IPv4 Address/Prefix
             (r"49\.\d{4}\.\d{4}\.\d{4}\.\d{4}\.\d{2}",           Number), # NSAP
-            (r"^(?:no\s+)?\S+", Keyword),
-            (r"\d+", Number),
+            (r"[a-f0-9]{4}\.[a-f0-9]{4}\.[a-f0-9]{4}",           Number.Hex), # MAC Address
+            (r"^(\s*no\s+)(\S+)", bygroups(Keyword.Constant, Keyword)),
+            (r"^\s*\S+", Keyword),
+            (r"\*+", Name.Entity),  #Obfuscated Passwords
+            (r"(?<= )\d+(?= )", Number),
             (r".", Text),
         ],
         
