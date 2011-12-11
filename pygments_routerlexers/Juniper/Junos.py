@@ -3,8 +3,8 @@ from pygments.lexer import RegexLexer,bygroups
 from pygments.token import *
 
 class JunosLexer(RegexLexer):
-    name="Juniper JunOS"
-    aliases = ['junos', 'JunOS configuration file']
+    name="Juniper Junos"
+    aliases = ['junos', 'Junos configuration file']
     filenames = ['*.junos']
     tokens={
         "root" : [
