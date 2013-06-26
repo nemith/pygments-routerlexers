@@ -4,7 +4,7 @@ from pygments.token import *
 
 class IOSLexer(RegexLexer):
     name="Cisco IOS"
-    aliases = ['ios', 'IOS configuration file']	
+    aliases = ['ios', 'IOS configuration file']
     filenames = ['*.ios']
     tokens={
         "root" : [
@@ -14,6 +14,7 @@ class IOSLexer(RegexLexer):
             (r"(password|secret)(\s+[57]\s+)(\S+)", bygroups(Keyword,Number,String.Double)),
             (r"^(interface|controller|router \S+|voice translation-\S+|voice-port|line)(.*?)$", bygroups(Keyword.Type,Name.Function)),
             (r"(permit|deny)", Operator.Word),
+            (r"^(banner\s+)(motd\s+|login\s+)(#)", bygroups(Keyword, Keyword, Name.Function), "text"),
             (r"^(dial-peer\s+\S+\s+)(\S+)(.*?)$", bygroups(Keyword,Name.Attribute,Keyword)),
             (r"^(vlan\s+)(\d+)$", bygroups(Keyword,Name.Attribute)),
             (r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(/\d{1,2})?", Number), # IPv4 Address/Prefix
@@ -25,6 +26,8 @@ class IOSLexer(RegexLexer):
             (r"(?<= )\d+(?= )", Number),
             (r".", Text),
         ],
-        
+        "text" : [
+            (r'[^#]', Text),
+            (r'#', Name.Function, '#pop'),
+        ],
     }
-
