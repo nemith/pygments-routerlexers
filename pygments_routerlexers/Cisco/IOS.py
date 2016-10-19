@@ -10,9 +10,9 @@ class IOSLexer(RegexLexer):
         "root" : [
             (r"^!.*", Comment),
             (r"^(version\s+)(.*)$", bygroups(Keyword, Number.Float)),
-            (r"(description)(.*?)$", bygroups(Keyword,Comment)),
+            (r"(desc*r*i*p*t*i*o*n*)(.*?)$", bygroups(Keyword,Comment)),
             (r"(password|secret)(\s+[57]\s+)(\S+)", bygroups(Keyword,Number,String.Double)),
-            (r"^(interface|controller|router \S+|voice translation-\S+|voice-port|line)(.*?)$", bygroups(Keyword.Type,Name.Function)),
+            (r"^(inte*r*f*a*c*e*|controller|router \S+|voice translation-\S+|voice-port|line)(.*?)$", bygroups(Keyword.Type,Name.Function)),
             (r"(permit|deny)", Operator.Word),
             (r"^(banner\s+)(motd\s+|login\s+)(#)", bygroups(Keyword, Keyword, Name.Function), "text"),
             (r"^(dial-peer\s+\S+\s+)(\S+)(.*?)$", bygroups(Keyword,Name.Attribute,Keyword)),
