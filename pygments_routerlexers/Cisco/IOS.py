@@ -21,7 +21,7 @@ class IOSLexer(RegexLexer):
             (r"49\.\d{4}\.\d{4}\.\d{4}\.\d{4}\.\d{2}",           Number), # NSAP
             (r"[a-f0-9]{4}\.[a-f0-9]{4}\.[a-f0-9]{4}",           Number.Hex), # MAC Address
             (r"^(\s*no\s+)(\S+)", bygroups(Keyword.Constant, Keyword)),
-            (r"^\s*\S+", Keyword),
+            (r"^[^\n\r]\s*\S+", Keyword),
             (r"\*+", Name.Entity),  #Obfuscated Passwords
             (r"(?<= )\d+(?= )", Number),
             (r".", Text),
